@@ -8,6 +8,7 @@ import org.junit.Test;
 import sun.java2d.loops.ProcessPath;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class RedmineProjectsTest extends RedmineConfig {
 
@@ -53,6 +54,19 @@ public class RedmineProjectsTest extends RedmineConfig {
         Project project = entity.getProject();
 
         System.out.println(project.toString());
+
+    }
+
+    @Test
+    public void testProjectValidateSchemaJSON(){
+
+        given()
+                .pathParam("idProject", 13).
+        when()
+                .get("projects/{idProject}.json").
+        then()
+                .statusCode(200)
+                .body(matchesJsonSchemaInClasspath("schemas/project_schema.json"));
 
     }
 

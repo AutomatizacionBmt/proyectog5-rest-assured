@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "identifier": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "homepage": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer"
+        },
+        "is_public": {
+          "type": "boolean"
+        },
+        "inherit_members": {
+          "type": "boolean"
+        },
+        "created_on": {
+          "type": "string"
+        },
+        "updated_on": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "identifier",
+        "description",
+        "homepage",
+        "status",
+        "is_public",
+        "inherit_members",
+        "created_on",
+        "updated_on"
+      ]
+    }
+  },
+  "required": [
+    "project"
+  ]
+}
