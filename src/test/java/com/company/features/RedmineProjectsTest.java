@@ -3,7 +3,9 @@ package com.company.features;
 import com.company.config.RedmineConfig;
 import com.company.entities.Entity;
 import com.company.entities.Project;
+import io.restassured.response.Response;
 import org.junit.Test;
+import sun.java2d.loops.ProcessPath;
 
 import static io.restassured.RestAssured.given;
 
@@ -15,8 +17,8 @@ public class RedmineProjectsTest extends RedmineConfig {
 
 
         Project project = new Project();
-        project.setName("RedmineProjectasdfgh1");
-        project.setIdentifier("redmineprojectasdfgh001");
+        project.setName("RedmineProjectasdfgh2");
+        project.setIdentifier("redmineprojectasdfgh2");
         project.setDescription("Esta es una descripción...");
         project.setInherit_members(false);
         project.setIs_public(true);
@@ -30,42 +32,27 @@ public class RedmineProjectsTest extends RedmineConfig {
         then()
                 .statusCode(201);
 
+    }
 
-        /*Prueba en Rest Assured
-        {
-            "name": "RedmineProjectasdfgh1",
-            "identifier": "redmineprojectasdfgh001",
-            "description": "Esta es una descripción...",
-            "inherit_members": false,
-            "is_public": true
-         }
-         */
+    @Test
+    public void testProjectDeserialization(){
 
-        /*Prueba en Postman
-        {
-            "project": {
-                "name": "Redmine Project Postman",
-                "identifier": "yedminepuwafgo8",
-                "description": "Redmine Project for api testing",
-                "inherit_members": false,
-                "is_public": true
-                }
+        Response response =
+                        given()
+                                .pathParam("idProject", 13).
+                        when()
+                                .get("projects/{idProject}.json");
+                        //then()
+                        //        .statusCode(200);
 
-        }
-         */
 
-        /*
-        {
-            "project": {
-                "name": "RedmineProjectasdfgh1",
-                "identifier": "redmineprojectasdfgh001",
-                "description": "Esta es una descripción...",
-                "inherit_members": false,
-                "is_public": true
-            }
-        }
-         */
+        response.then().statusCode(200);
 
+
+        Entity  entity = response.getBody().as(Entity.class);
+        Project project = entity.getProject();
+
+        System.out.println(project.toString());
 
     }
 
