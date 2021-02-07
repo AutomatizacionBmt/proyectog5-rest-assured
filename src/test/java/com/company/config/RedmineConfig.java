@@ -10,7 +10,6 @@ import io.restassured.specification.ResponseSpecification;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
-import static org.hamcrest.Matchers.lessThan;
 
 
 public class RedmineConfig {

@@ -5,7 +5,6 @@ import com.company.entities.Entity;
 import com.company.entities.Project;
 import io.restassured.response.Response;
 import org.junit.Test;
-import sun.java2d.loops.ProcessPath;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
