@@ -3,6 +3,7 @@ package com.company.cucumber.stepdefs;
 import com.company.entities.Entity;
 import com.company.entities.Project;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -61,6 +62,17 @@ public class RestProjectsStepdefs {
                 body(entity)
                 .when()
                 .post("projects.json");
+
+    }
+
+    @When("Un usuario envia una peticion al servicio de obtener un proyecto por su id")
+    public void unUsuarioEnviaUnaPeticionAlServicioDeObtenerUnProyectoPorSuId(Map<String, String > project) {
+
+    }
+
+    @And("El sistema debe responder con la siguiente data del proyecto:")
+    public void elSistemaDebeResponderConLaSiguienteDataDelProyecto(Map<String, String > dataProject) {
+
 
     }
 }

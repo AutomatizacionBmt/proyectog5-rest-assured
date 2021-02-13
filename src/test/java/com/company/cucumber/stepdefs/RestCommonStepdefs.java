@@ -1,5 +1,6 @@
 package com.company.cucumber.stepdefs;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
@@ -29,5 +30,9 @@ public class RestCommonStepdefs {
     }
 
 
+    @And("El esquema de respuesta del servicio es {string}")
+    public void elEsquemaDeRespuestaDelServicioEs(String schema) {
 
+
+    }
 }
