@@ -1,5 +1,7 @@
 package com.company.cucumber.stepdefs;
 
+import com.company.entities.Entity;
+import com.company.entities.Project;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,42 +19,29 @@ import static io.restassured.RestAssured.given;
 
 public class RestIssuesStepdefs {
 
-    private RequestSpecification request;
-    private Response response;
+    private RestCommonStepdefs commonSteps;
 
-
-    @Given("El sistema esta listo para recibir peticiones")
-    public void elSistemaEstaListoParaRecibirPeticiones() {
-
-        request = given();
-
+    public RestIssuesStepdefs(RestCommonStepdefs commonSteps){
+        this.commonSteps = commonSteps;
     }
+
 
     @When("Un usuario envia una peticion al servicio de listar todos los issues")
     public void unUsuarioEnviaUnaPeticionAlServicioDeListarTodosLosIssues() {
 
-        response = request.when()
+        commonSteps.response = commonSteps.request.when()
                 .get("issues.json");
 
     }
 
 
-    @Then("El codigo de estado de la respuesta del servicio debe ser {int}")
-    public void elCodigoDeEstadoDeLaRespuestaDelServicioDebeSer(int statusCode) {
-
-        response.
-                then()
-                .statusCode(statusCode);
-
-    }
-
     @When("Un usuario envia una peticion al servicio de obtener un issue por su id")
     public void unUsuarioEnviaUnaPeticionAlServicioDeObtenerUnIssuePorSuId(Map<String, String> issue) {
 
-    response = request.
-            pathParam("idIssue", issue.get("id")).
-    when()
-            .get("issues/{idIssue}.json");
+        commonSteps.response = commonSteps.request.
+                pathParam("idIssue", issue.get("id")).
+                when()
+                .get("issues/{idIssue}.json");
 
 
     }
@@ -60,7 +49,7 @@ public class RestIssuesStepdefs {
     @And("El sistema debe responder con la siguiente data:")
     public void elSistemaDebeResponderConLaSiguienteData(Map<String, String> expectedData) {
 
-        JsonPath actualData = new JsonPath(response.getBody().asString());
+        JsonPath actualData = new JsonPath(commonSteps.response.getBody().asString());
 
         Assert.assertEquals("El id no es el correcto",
                 Integer.parseInt(expectedData.get("id")),
@@ -79,4 +68,5 @@ public class RestIssuesStepdefs {
                 actualData.getString("issue.start_date"));
 
     }
+
 }
