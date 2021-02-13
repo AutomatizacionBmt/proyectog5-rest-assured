@@ -10,4 +10,25 @@ Feature: Pruebas al api de issues de redmine
     Then El codigo de estado de la respuesta del servicio debe ser 200
 
 
+  @rest
+  Scenario: Obtener un issue por su id
+    Given El sistema esta listo para recibir peticiones
+    When Un usuario envia una peticion al servicio de obtener un issue por su id
+      | id | 3487 |
+    Then El codigo de estado de la respuesta del servicio debe ser 200
+    And El sistema debe responder con la siguiente data:
+      | id          | 3487                                 |
+      | subject     | Issue modificado por JHHA            |
+      | description | Esta es una descripcion paara prueba |
+      | start_date  | 2021-02-12                           |
+
+
+
+
+
+
+
+
+
+
 
