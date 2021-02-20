@@ -7,6 +7,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class RestCommonStepdefs {
 
@@ -33,6 +34,8 @@ public class RestCommonStepdefs {
     @And("El esquema de respuesta del servicio es {string}")
     public void elEsquemaDeRespuestaDelServicioEs(String schema) {
 
-
+        response.
+                then().
+                body(matchesJsonSchemaInClasspath("schemas/" + schema));
     }
 }

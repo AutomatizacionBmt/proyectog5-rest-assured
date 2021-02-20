@@ -5,8 +5,10 @@ import com.company.entities.Project;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.junit.Assert;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -70,11 +72,25 @@ public class RestProjectsStepdefs {
     @When("Un usuario envia una peticion al servicio de obtener un proyecto por su id")
     public void unUsuarioEnviaUnaPeticionAlServicioDeObtenerUnProyectoPorSuId(Map<String, String > project) {
 
+        commonSteps.response = commonSteps.request.
+                pathParam("idProject", project.get("id")).
+                when()
+                        .get("projects/{idProject}.json");
+
     }
 
     @And("El sistema debe responder con la siguiente data del proyecto:")
-    public void elSistemaDebeResponderConLaSiguienteDataDelProyecto(Map<String, String > dataProject) {
+    public void elSistemaDebeResponderConLaSiguienteDataDelProyecto(Map<String, String > expectedData) {
 
+        JsonPath actualData = new JsonPath(commonSteps.response.getBody().asString());
+
+        Assert.assertEquals("El id del proyecto no es el correcto",
+                Integer.parseInt(expectedData.get("id")),
+                actualData.getInt("project.id"));
+
+        Assert.assertEquals("El nombre del proyecto no es el correcto",
+                expectedData.get("name"),
+                actualData.getString("project.name"));
 
     }
 }

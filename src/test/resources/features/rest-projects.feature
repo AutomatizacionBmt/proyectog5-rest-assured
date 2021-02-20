@@ -34,9 +34,9 @@ Feature: Pruebas al api de proyectos de redmine
   Scenario: Obtener un proyecto por id
     Given El sistema esta listo para recibir peticiones
     When Un usuario envia una peticion al servicio de obtener un proyecto por su id
-      | id | 3487 |
+      | id | 117 |
     Then El codigo de estado de la respuesta del servicio debe ser 200
     And El esquema de respuesta del servicio es "project_schema.json"
     And El sistema debe responder con la siguiente data del proyecto:
-      | id          | 3487                                 |
-      | name        | Issue modificado por JHHA            |
+      | id   | 117                  |
+      | name | RedmineProject523925 |
