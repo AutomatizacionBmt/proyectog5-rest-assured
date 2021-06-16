@@ -3,7 +3,7 @@ Feature: Pruebas al api de proyectos de redmine
   Yo quiero crear proyectos a través del api de proyectos
   para poder llevar un control de los proyectos
 
-  @rest
+  @rest @Working
   Scenario: Create un proyecto
     Given El sistema esta listo para recibir peticiones
     When El usuario envia una peticion al servicio de crear un proyecto
@@ -15,7 +15,7 @@ Feature: Pruebas al api de proyectos de redmine
     Then El codigo de estado de la respuesta del servicio debe ser 201
 
 
-  @rest
+  @rest @Working
   Scenario Outline: Create un proyecto con ejemplos
     Given El sistema esta listo para recibir peticiones
     When El usuario crea varios proyectos:
@@ -30,7 +30,7 @@ Feature: Pruebas al api de proyectos de redmine
       | RedmineProject3 | redmineproject | description3 | false           | true      |
 
 
-  @rest
+  @rest @Working
   Scenario: Obtener un proyecto por id
     Given El sistema esta listo para recibir peticiones
     When Un usuario envia una peticion al servicio de obtener un proyecto por su id
@@ -39,4 +39,4 @@ Feature: Pruebas al api de proyectos de redmine
     And El esquema de respuesta del servicio es "project_schema.json"
     And El sistema debe responder con la siguiente data del proyecto:
       | id   | 117                  |
-      | name | RedmineProject523925 |
+      | name | RedmineProject444433 |

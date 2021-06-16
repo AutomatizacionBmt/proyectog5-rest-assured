@@ -22,11 +22,11 @@ public class RedmineConfig {
     public static void setUp(){
 
         requestSpecification = new RequestSpecBuilder()
-                .setBaseUri("http://198.211.98.120")
-                .setPort(8081)
+                .setBaseUri("http://5f5db1715875.ngrok.io")
+                //.setPort(8081)
                 .setBasePath("/")
                 .addHeader("Content-Type", "application/json")
-                .addHeader("X-Redmine-API-Key", "ccb0c7377946014cdf7efe0346ed26a93cc7e1b7")
+                .addHeader("X-Redmine-API-Key", "54d992219a4d120df54d5a72cb152e8b89d20d65")
                 .addFilter(new RequestLoggingFilter())
                 .addFilter(new ResponseLoggingFilter())
                 .build();
